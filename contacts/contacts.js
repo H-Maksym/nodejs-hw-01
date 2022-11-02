@@ -18,7 +18,8 @@ async function listContacts() {
 
 /** get  contacts by id */
 async function getContactById(contactId) {
-  contactId = String(contactId);
+  //for yargs library
+  // contactId = String(contactId);
   const contacts = await listContacts();
   const result = contacts.find(contact => contact.id === contactId);
   return result || null;
@@ -26,7 +27,8 @@ async function getContactById(contactId) {
 
 /** delete  contacts by id */
 async function removeContact(contactId) {
-  contactId = String(contactId);
+  //for yargs library
+  // contactId = String(contactId);
 
   const contacts = await listContacts();
   const index = contacts.findIndex(contact => contact.id === contactId);
@@ -40,7 +42,8 @@ async function removeContact(contactId) {
 
 /** update  contacts by id */
 async function updateById(contactId, name, email, phone) {
-  contactId = String(contactId);
+  //for yargs library
+  // contactId = String(contactId);
 
   const contacts = await listContacts();
   const index = contacts.findIndex(contact => contact.id === contactId);

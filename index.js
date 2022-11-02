@@ -2,8 +2,13 @@ const {
   operation: { listContacts, getContactById, removeContact, addContact, updateById },
 } = require('./contacts/index.js');
 
-const yargs = require('yargs');
-const { hideBin } = require('yargs/helpers');
+const { Command } = require('commander');
+const program = new Command();
+
+//*library yargs
+// const yargs = require('yargs');
+// const { hideBin } = require('yargs/helpers');
+
 // const argv = require('yargs').argv;
 
 async function invokeAction({ action, id, name, email, phone }) {
@@ -63,7 +68,23 @@ async function invokeAction({ action, id, name, email, phone }) {
 //   invokeAction({ action });
 // }
 
-//*use library yargs
-const arr = hideBin(process.argv);
-const { argv } = yargs(arr);
+//*use yargs library
+//! if we write id as string like number - will be number, but in *.json may be string, and we must transformate to Sting(id)
+
+// const arr = hideBin(process.argv);
+// const { argv } = yargs(arr);
+// invokeAction(argv);
+
+//*use commander library
+//! if we write id as string like number - will be string
+program
+  .option('-a, --action <type>', 'choose action')
+  .option('-i, --id <type>', 'user id')
+  .option('-n, --name <type>', 'user name')
+  .option('-e, --email <type>', 'user email')
+  .option('-p, --phone <type>', 'user phone');
+
+//we can no write process.argv in function, because is default
+program.parse();
+const argv = program.opts();
 invokeAction(argv);
