@@ -2,13 +2,13 @@ const {
   operation: { listContacts, getContactById, removeContact, addContact, updateById },
 } = require('./contacts/index.js');
 
+//* commander
 const { Command } = require('commander');
 const program = new Command();
 
-//*library yargs
+//* yargs
 // const yargs = require('yargs');
 // const { hideBin } = require('yargs/helpers');
-
 // const argv = require('yargs').argv;
 
 async function invokeAction({ action, id, name, email, phone }) {
@@ -69,7 +69,7 @@ async function invokeAction({ action, id, name, email, phone }) {
 // }
 
 //*use yargs library
-//! if we write id as string like number - will be number, but in *.json may be string, and we must transformate to Sting(id)
+//! if we write id as string like number - will be number, but in *.json may be string, and we must turn to Sting(id)
 
 // const arr = hideBin(process.argv);
 // const { argv } = yargs(arr);
