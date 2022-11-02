@@ -1,8 +1,9 @@
+//!Example
+
 // console.log('Hello world, Maksym!');
 // console.log(require('url'));
 
 // const fs = require('fs/promises');
-
 // //*function for operation with file by filePath, action and additional data
 // const fileOperation = async ({ filePath, action, data }) => {
 //   switch (action) {

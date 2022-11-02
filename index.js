@@ -2,7 +2,9 @@ const {
   operation: { listContacts, getContactById, removeContact, addContact, updateById },
 } = require('./contacts/index.js');
 
-const argv = require('yargs').argv;
+const yargs = require('yargs');
+const { hideBin } = require('yargs/helpers');
+// const argv = require('yargs').argv;
 
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
@@ -29,13 +31,14 @@ async function invokeAction({ action, id, name, email, phone }) {
     case 'update':
       const updateContact = await updateById(id, name, email, phone);
       console.log(updateContact);
-      // ... id
       break;
 
     default:
       console.warn('\x1B[31m Unknown action type!');
   }
 }
+
+//* call method from file
 // invokeAction({ action: 'list' });
 // invokeAction({ action: 'get', id: '2' });
 // invokeAction({
@@ -51,4 +54,16 @@ async function invokeAction({ action, id, name, email, phone }) {
 //   email: 'jgold@gmail.com',
 //   phone: '(875) 902-6653',
 // });
-invokeAction({ action: 'remove', id: 'fd0I1K4b2JdzjwTd8gGW7' });
+// invokeAction({ action: 'remove', id: 'fd0I1K4b2JdzjwTd8gGW7' });
+
+//* use console application without library
+// const actionIndex = process.argv.indexOf('--action');
+// if (actionIndex !== -1) {
+//   const action = process.argv[actionIndex + 1];
+//   invokeAction({ action });
+// }
+
+//*use library yargs
+const arr = hideBin(process.argv);
+const { argv } = yargs(arr);
+invokeAction(argv);
